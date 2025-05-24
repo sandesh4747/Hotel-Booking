@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(clerkMiddleware());
 
 // API to listen to Clerk webhooks
-app.use("app/clerk", clerkwebhooks);
+app.use("/app/clerk", clerkwebhooks);
 
 app.get("/", (req, res) => res.send("API is working "));
 

@@ -9,12 +9,13 @@ const clerkwebhooks = async (req, res) => {
     //Getting Headers
     const headers = {
       "svix-id": req.headers["svix-id"],
-      "svix-timestamps": req.headers["svix-timestamps"],
+      "svix-timestamp": req.headers["svix-timestamp"],
       "svix-signature": req.headers["svix-signature"],
     };
 
     // Verifying Headers
     await whook.verify(JSON.stringify(req.body), headers);
+    console.log("Received webhook:", req.body);
 
     //Getting Data from request body
 
@@ -49,7 +50,7 @@ const clerkwebhooks = async (req, res) => {
     });
   } catch (error) {
     console.log(error.message);
-    req.josn({
+    res.json({
       success: false,
       message: error.message,
     });
